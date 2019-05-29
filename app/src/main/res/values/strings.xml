@@ -2,4 +2,7 @@
     <string name="app_name">PepeMusic</string>
     <string name="playback_channel_name">Playback</string>
     <string name="download_channel_name">Download</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

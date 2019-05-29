@@ -24,12 +24,12 @@ class DirectoriesAdapter(private val listener: (String) -> Unit) : Adapter<Direc
 
     override fun getItemCount() = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DirectoriesAdapter.DirectoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DirectoryViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.directory_layout, parent, false)
         return DirectoryViewHolder(itemView)
     }
 
-    class DirectoryViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    class DirectoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindDirectory(directory: String, listener: (String) -> Unit) {
             with(itemView) {
                 directoryTitle.text = directory

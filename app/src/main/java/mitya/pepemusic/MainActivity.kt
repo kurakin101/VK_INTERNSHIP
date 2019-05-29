@@ -15,49 +15,72 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val fragmentManager = supportFragmentManager
+    private var flag: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupNavigationView()
-        setupToolbar()
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE
-                        , Manifest.permission.WRITE_EXTERNAL_STORAGE), EXTERNAL_STORAGE_PERMISSION_CODE)
-            }
+
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE
+//                        , Manifest.permission.WRITE_EXTERNAL_STORAGE), EXTERNAL_STORAGE_PERMISSION_CODE)
+//            }
+
+//        setupPermissions()
+//
+//        r1.visibility = View.VISIBLE
+//        newFolderBtn.setOnClickListener {
+//
+//
+//            val permission = ContextCompat.checkSelfPermission(this,
+//                    Manifest.permission.READ_EXTERNAL_STORAGE)
+//
+//            if (permission != PackageManager.PERMISSION_GRANTED) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+////                    Toast.makeText(this, "work", Toast.LENGTH_SHORT).show()
+//                    requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE
+//                            , Manifest.permission.WRITE_EXTERNAL_STORAGE), EXTERNAL_STORAGE_PERMISSION_CODE)
+//                    }
+//                }else{
+//
+                replaceCurrentFragment(FolderFragment())
+//
+//
+//            }
+////                setupPermissions()
+////                if (flag != true){
+////                    Toast.makeText(this, "work", Toast.LENGTH_SHORT).show()
+////                    replaceCurrentFragment(DirectoriesFragment())
+////                }
+//
+////            }else{
+////                replaceCurrentFragment(DirectoriesFragment())
+////            }
+////            replaceCurrentFragment(DirectoriesFragment())
+//
+//
+////            r1.visibility = View.INVISIBLE
+////            replaceCurrentFragment(DirectoriesFragment())
+//        }
+
+
+
+
+
 
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_menu)
-        }
-    }
 
-    private fun setupNavigationView() {
-        navigationView.setNavigationItemSelectedListener { item ->
-            item.isChecked = true
-            drawerLayout.closeDrawers()
-            when (item.itemId) {
-                R.id.menuLocal -> replaceCurrentFragment(DirectoriesFragment())
-                R.id.menuVk -> {
-                    val bundle = Bundle()
-                    bundle.putString("currentDirectory"
-                            , Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).absolutePath + "/" + getString(R.string.app_name))
-                    replaceCurrentFragment(LocalTracksFragment(), bundle)
-                }
-            }
-            true
-        }
-    }
 
     private fun replaceCurrentFragment(fragment: androidx.fragment.app.Fragment, bundle: Bundle = Bundle()
                                        , addToBackStack: Boolean = false) {
@@ -69,37 +92,29 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+//    private fun setupPermissions() {
+//        val permission = ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.READ_EXTERNAL_STORAGE)
+//
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//           flag = true
+//        }
+//    }
+//
+//
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        when (requestCode) {
+//            EXTERNAL_STORAGE_PERMISSION_CODE -> {
+//                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//
+//                    replaceCurrentFragment(DirectoriesFragment())
+//                }
+//                return
+//            }
+//            else -> {
+//
+//            }
+//        }
+//    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            EXTERNAL_STORAGE_PERMISSION_CODE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    replaceCurrentFragment(DirectoriesFragment())
-                }
-                return
-            }
-            else -> {
-
-            }
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.options_menu, menu)
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        (menu.findItem(R.id.search).actionView as SearchView).apply {
-            setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                drawerLayout.openDrawer(GravityCompat.START)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }
