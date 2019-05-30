@@ -1,102 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    android:background="#CC000000"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/r1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
+        android:layout_marginHorizontal="24dp">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:textSize="22sp"
+            android:scrollHorizontally="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="Song"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="200dp"
+            android:layout_height="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:text="Artist"
+            android:layout_below="@id/title"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_add_outline_24"
+            android:tint="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_ic_more_24dp"
+            android:tint="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+
+
+    </RelativeLayout>
+
+    <com.google.android.exoplayer2.ui.DefaultTimeBar
+        android:id="@id/exo_progress"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="24dp"
+        app:ad_marker_color="@color/colorPrimary"
+        app:played_color="@color/colorPrimary"
+        android:layout_below="@id/r1"/>
+
+
+    <RelativeLayout
+        android:id="@+id/r2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="4dp">
-
-        <ImageButton
-            android:id="@id/exo_next"
-            style="@style/ExoMediaButton.Next" />
-
-
-        <ImageButton
-            android:id="@id/exo_play"
-            style="@style/ExoMediaButton.Play" />
-
-        <ImageButton
-            android:id="@id/exo_pause"
-            style="@style/ExoMediaButton.Pause" />
-
-        <ImageButton
-            android:id="@id/exo_prev"
-            style="@style/ExoMediaButton.Previous" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:textColor="#FFBEBEBE"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/artist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:textColor="#FFBEBEBE"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="24dp"
+        android:layout_below="@id/exo_progress">
 
         <TextView
             android:id="@id/exo_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:textColor="#FFBEBEBE"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:text="0.00"
+            android:layout_marginStart="4dp"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
 
-        <com.google.android.exoplayer2.ui.DefaultTimeBar
-            android:id="@id/exo_progress"
-            android:layout_width="0dp"
-            android:layout_height="26dp"
-            android:layout_weight="1" />
 
         <TextView
             android:id="@id/exo_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_alignParentEnd="true"
+            android:text="4.34"
             android:textColor="#FFBEBEBE"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/r3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/r2">
+
+
+            <!--<ImageButton-->
+                <!--android:id="@id/exo_next"-->
+                <!--style="@style/ExoMediaButton.Next"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_centerVertical="true"/>-->
+
+
+            <!--<ImageButton-->
+                <!--android:id="@id/exo_play"-->
+                <!--android:layout_width="64dp"-->
+                <!--android:layout_height="64dp"-->
+                <!--android:background="@drawable/ic_play_48"-->
+                <!--android:layout_centerInParent="true" />-->
+
+
+            <ImageView
+                android:id="@+id/exo_play"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/vk_circle"
+                android:src="@drawable/ic_play_48"
+                android:elevation="6dp"
+                android:padding="6dp"
+                android:layout_centerInParent="true" />
+
+
+            <ImageView
+                android:id="@+id/exo_pause"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/vk_circle"
+                android:src="@drawable/ic_pause_48"
+                android:elevation="6dp"
+                android:padding="6dp"
+                android:layout_centerInParent="true" />
+
+
+            <!--<ImageButton-->
+                <!--android:id="@id/exo_pause"-->
+                <!--android:layout_width="64dp"-->
+                <!--android:layout_height="64dp"-->
+                <!--style="@style/ExoMediaButton.Pause"-->
+                <!--android:background="@drawable/vk_circle"-->
+                <!--android:layout_centerInParent="true"/>-->
+
+            <!--<ImageButton-->
+                <!--android:id="@id/exo_prev"-->
+                <!--style="@style/ExoMediaButton.Previous"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_centerVertical="true"/>-->
+
+
+
+
+            <ImageView
+                android:id="@+id/exo_next"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_skip_next_48"
+                android:layout_alignParentEnd="true"
+                android:elevation="4dp"
+                android:layout_centerVertical="true"/>
+
+
+            <ImageView
+                android:id="@+id/exo_prev"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_skip_previous_48"
+                android:layout_alignParentStart="true"
+                android:elevation="4dp"
+                android:layout_centerVertical="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/r4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_below="@+id/r3"
+        android:layout_marginTop="24dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_shuffle_24"
+            android:background="@drawable/vk_circle"
+            android:elevation="2dp"
+            android:padding="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"/>
+
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_repeat_24"
+            android:elevation="2dp"
+            android:tint="@color/colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
